@@ -16,7 +16,7 @@ Huge props and thanks to the ffmpeg open source community.
 
 #### Gitlab-CI.yml
 
-Two stages automation of build and deployment of two different repositories in Gitlab.
+Two stages automation of build and deployment of two different directories in Gitlab.
 Made and used in accordance with Gitlab's great documentation to facilitate the development of an E-Commerce project that was coded and delivered as the conclusion project of the first year of Digital House's Certified Tech Developer course.
 
 #### Hotspot-on.ps1
