@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-discovery
+  namespace: default
+  labels:
+    app: eureka
+spec:
+  type: NodePort
+  ports:
+    - port: 8761
+      nodePort: 30030
+  selector:
+    app: eureka

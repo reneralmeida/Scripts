@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind:
+  Deployment
+metadata:
+  name: mail-service
+  namespace: default
+  labels:
+    app: mail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mail
+  template:
+    metadata:
+      labels:
+        app: mail
+    spec:
+      containers:
+        - name: mail
+          image: registry.gitlab.com/reneralmeida/pi-ii/mail-service
+          ports:
+            - name: http
+              containerPort: 8090
+          env:
+            - name: GIN_MODE
+              value: release
+            - name: HOST
+              value: localhost
+            - name: PORT
+              value: "8090"
+            - name: EUREKA_SERVER_URL
+              value: http://service-discovery:8761/eureka
+            - name: RABBIT_MQ_URL_CONN
+              value:
+            - name: REALM_CONFIG_URL
+              value:
+            - name: CLIENT_ID
+              value:
+            - name: CLIENT_SECRET
+              value:
+            - name: SMTP_HOST
+              value:
+            - name: SMTP_PORT
+              value: "587"
+            - name: SMTP_USERNAME
+              value:
+            - name: SMTP_PASSWORD
+              value:
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: gitlabcred

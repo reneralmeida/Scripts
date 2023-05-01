@@ -1,0 +1,33 @@
+[controlplane]
+controlplane1 ansible_host=insert-first-vm-ip new_hostname=controlplane1
+
+[nodes]
+node1 ansible_host=insert-second-vm-ip new_hostname=node1
+node2 ansible_host=insert-third-vm-ip new_hostname=node2
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new' 
+ansible_user=ubuntu 
+ansible_ssh_private_key_file=/home/ubuntu/.ssh/your-key-name
+ACC_SVC_DB_PASS=
+ACC_SVC_DB_URL=
+ACC_SVC_DB_USER=
+ACC_SVC_NAME=
+ACC_SVC_PORT=
+KEYCLOAK_DB_USER=
+KEYCLOAK_DB_PASS=
+KEYCLOAK_DB_PORT=
+KEYCLOAK_DB_URL=
+USR_SVC_DB_PASS=
+USR_SVC_DB_URL=
+USR_SVC_DB_USER=
+USR_SVC_NAME=
+USR_SVC_PORT=
+CLIENT_SECRET_BACKEND=
+CLIENT_ID_BACKEND=
+CLIENT_SECRET_USERS=
+CLIENT_ID_USERS=
+KEYCLOAK_SERVER_URL=
+REALM_TOKEN_URI=
+JWT_ISSUER_URI=

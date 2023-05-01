@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind:
+  Deployment
+metadata:
+  name: keycloak
+  namespace: default
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: registry.gitlab.com/reneralmeida/pi-ii/keycloak
+          volumeMounts:
+            - name: tls-keycloak
+              mountPath: "/etc/ssl"
+              readOnly: true
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
+          #command: ["/bin/sh"]
+          args: ["-v start --https-protocols=TLSv1.3,TLSv1.2 --import-realm"]
+          #args: ["-v start --import-realm"]
+          env:
+            - name: KC_HEALTH_ENABLED
+              value: "true"
+            - name: KC_METRICS_ENABLED
+              value: "true"
+            - name: KC_TRANSACTION_XA_ENABLED
+              value: 'true'
+            - name: KC_HOSTNAME
+              value:
+            - name: KC_HTTPS_CERTIFICATE_FILE
+              value: /etc/x509/https/cert.pem
+            - name: KC_HTTPS_CERTIFICATE_KEY_FILE
+              value: /etc/x509/https/privkey.pem
+            - name: KC_HOSTNAME_STRICT_HTTPS
+              value: "true"
+            - name: KC_PROXY
+              value: edge
+            - name: KEYCLOAK_ADMIN
+              value:
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value:
+            - name: KC_DB
+              value:
+            - name: KC_DB_PASSWORD
+              value:
+            - name: KC_DB_USERNAME
+              value:
+            - name: KC_DB_URL
+              value:
+            - name: PROXY_ADDRESS_FORWARDING
+              value: "true"
+          readinessProbe:
+            httpGet:
+              path: /admin/master/console/
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 1
+          imagePullPolicy: Always
+      volumes:
+        - name: tls-keycloak
+          secret:
+            secretName: tls-keycloak-sec
+            optional: false
+      imagePullSecrets:
+        - name: gitlabcred

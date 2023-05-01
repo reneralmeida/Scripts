@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind:
+  Deployment
+metadata:
+  name: users-service
+  namespace: default
+  labels:
+    app: users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+        - name: users
+          image: registry.gitlab.com/reneralmeida/pi-ii/users-service
+          ports:
+            - name: http
+              containerPort: 8081
+          env:
+            - name: CLIENT_ID_BACKEND
+              value:
+            - name: CLIENT_ID_USERS
+              value:
+            - name: CLIENT_SECRET_BACKEND
+              value:
+            - name: CLIENT_SECRET_USERS
+              value:
+            - name: JWT_ISSUER_URI
+              value:
+            - name: KEYCLOAK_SERVER_URL
+              value:
+            - name: REALM_TOKEN_URI
+              value:
+            - name: USR_SVC_DB_URL
+              value:
+            - name: USR_SVC_DB_USER
+              value:
+            - name: USR_SVC_DB_PASS
+              value:
+          readinessProbe:
+            httpGet:
+              path: /swagger-ui/index.html
+              port: 8081
+            initialDelaySeconds: 60
+            periodSeconds: 1
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: gitlabcred

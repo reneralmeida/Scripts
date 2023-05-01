@@ -25,7 +25,14 @@ Script I put together combining different StackOverFlow suggestions, this is use
 It's quite simple really, if the hotspot function is active it does nothing, if it's not it activates it and upon doing so if you own a computer that has a dedicated wireless card you can set the hotspot name and password to match your local network, thus extending your WiFi signal to the rooms surrounding your PC.
 Ideally used as a Windows scheduled task, hence why the hotspot-on.bat is included.
 
+### Terraform-Ansible(IaC)
 
+A couple of IaC scripts, one for a single vm environment and another for a Kubernetes environment. Both were used to deploy a project (k8s templates included in the Kubernetes folder), the single vm env was used for development and testing. The Kubernetes one for production.
+With a few terraform commands you get the ec2 vms, indexed security group (or create one) and a private key.
 
+### Xiami-Bloatware-Remover.bat
+
+A simple shell script to remove bloatware that is standard in every official Xiaomi rom, specially useful on the most budget or lower end devices.
+Makes them run quite faster and with far less abusive telemetry. This script needs to be placed inside the platform-tools folder of the Android SDK and the device must have development options and usb debugging enabled.
 
 
