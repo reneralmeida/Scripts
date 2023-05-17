@@ -33,6 +33,6 @@ With a few terraform commands you get the ec2 vms, indexed security group (or cr
 ### Xiami-Bloatware-Remover.bat
 
 A simple shell script to remove bloatware that is standard in every official Xiaomi rom, specially useful on the most budget or lower end devices.
-Makes them run quite faster and with far less abusive telemetry. This script needs to be placed inside the platform-tools folder of the Android SDK and the device must have development options and usb debugging enabled.
+Makes them run quite faster and with far less abusive telemetry. This script needs to be placed inside the plataform-tools folder of the Android SDK and the device must have development options and usb debugging enabled.
 
 
